@@ -1,116 +1,92 @@
-<template>
-    <div class="hello">
-        <h1>{{ msg }}</h1>
-        <h2>Essential Links</h2>
-        <ul>
-            <li>
-                <a
-                    href="https://vuejs.org"
-                    target="_blank"
-                >
-                    Core Docs
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://forum.vuejs.org"
-                    target="_blank"
-                >
-                    Forum
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://chat.vuejs.org"
-                    target="_blank"
-                >
-                    Community Chat
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://twitter.com/vuejs"
-                    target="_blank"
-                >
-                    Twitter
-                </a>
-            </li>
-            <br>
-            <li>
-                <a
-                    href="http://vuejs-templates.github.io/webpack/"
-                    target="_blank"
-                >
-                    Docs for This Template
-                </a>
-            </li>
-        </ul>
-        <h2>Ecosystem</h2>
-        <ul>
-            <li>
-                <a
-                    href="http://router.vuejs.org/"
-                    target="_blank"
-                >
-                    vue-router
-                </a>
-            </li>
-            <li>
-                <a
-                    href="http://vuex.vuejs.org/"
-                    target="_blank"
-                >
-                    vuex
-                </a>
-            </li>
-            <li>
-                <a
-                    href="http://vue-loader.vuejs.org/"
-                    target="_blank"
-                >
-                    vue-loader
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://github.com/vuejs/awesome-vue"
-                    target="_blank"
-                >
-                    awesome-vue
-                </a>
-            </li>
-        </ul>
-    </div>
-</template>
+<script setup lang="ts">
+import { ref } from "vue";
+import { ElMessage } from "element-plus";
 
-<script>
-export default {
-    name: 'HelloWorld',
-    data() {
-        return {
-            msg: 'Welcome to Hade dev all Vue.js App '
-        }
-    }
-}
+defineProps<{ msg: string }>();
+
+const count = ref(0);
+const input = ref("element-plus");
+
+const curDate = ref("");
+
+const toast = () => {
+  ElMessage.success("Hello");
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-    font-weight: normal;
-}
+<template>
+  <h1 color="$ep-color-primary">{{ msg }}</h1>
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
+  <p>
+    See
+    <a href="https://element-plus.org" target="_blank">element-plus</a> for more
+    information.
+  </p>
 
-li {
-    display: inline-block;
-    margin: 0 10px;
-}
+  <!-- example components -->
+  <div class="mb-4">
+    <el-button size="large" @click="toast">El Message</el-button>
+  </div>
 
-a {
-    color: #42b983;
+  <div class="my-2 text-center flex flex-wrap justify-center items-center">
+    <el-button @click="count++">count is: {{ count }}</el-button>
+    <el-button type="primary" @click="count++">count is: {{ count }}</el-button>
+    <el-button type="success" @click="count++">count is: {{ count }}</el-button>
+    <el-button type="warning" @click="count++">count is: {{ count }}</el-button>
+    <el-button type="danger" @click="count++">count is: {{ count }}</el-button>
+    <el-button type="info" @click="count++">count is: {{ count }}</el-button>
+  </div>
+
+  <div>
+    <el-tag type="success" class="m-1">Tag 1</el-tag>
+    <el-tag type="warning" class="m-1">Tag 1</el-tag>
+    <el-tag type="danger" class="m-1">Tag 1</el-tag>
+    <el-tag type="info" class="m-1">Tag 1</el-tag>
+  </div>
+
+  <div class="my-2">
+    <el-input class="m-2" v-model="input" style="width: 200px" />
+    <el-date-picker
+      class="m-2"
+      v-model="curDate"
+      type="date"
+      placeholder="Pick a day"
+    ></el-date-picker>
+  </div>
+
+  <p>For example, we can custom primary color to 'green'.</p>
+
+  <p>
+    Edit
+    <code>components/HelloWorld.vue</code> to test components.
+  </p>
+  <p>
+    Edit
+    <code>styles/element/var.scss</code> to test scss variables.
+  </p>
+
+  <p>
+    Full Example:
+    <a
+      href="https://github.com/element-plus/element-plus-vite-starter"
+      target="_blank"
+      >element-plus-vite-starter</a
+    >
+    | On demand Example:
+    <a
+      href="https://github.com/element-plus/unplugin-element-plus"
+      target="_blank"
+      >unplugin-element-plus/examples/vite</a
+    >
+  </p>
+</template>
+
+<style>
+.ep-button {
+  margin: 4px;
+}
+.ep-button + .ep-button {
+  margin-left: 0;
+  margin: 4px;
 }
 </style>

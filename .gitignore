@@ -7,7 +7,7 @@ yarn-error.log*
 /test/unit/
 /test/e2e/
 selenium-debug.log
-hade
+hade_bbs
 storage
 /deploy/
 /config/hadeoffice
@@ -20,4 +20,4 @@ storage
 *.ntvs*
 *.njsproj
 *.sln
-hade.exe
+hade_bbs.exe

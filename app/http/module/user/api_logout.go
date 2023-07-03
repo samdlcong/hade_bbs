@@ -15,4 +15,11 @@ import (
 // @Router /user/logout [get]
 func (api *UserApi) Logout(c *gin.Context) {
 	authUser := auth.GetAuthUser(c)
+	if authUser == nil {
+		c.ISetStatus(500).IText("用户未登录")
+		return
+	}
+	c.IRedirect("/#/login")
+	return
+
 }

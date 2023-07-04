@@ -12,7 +12,8 @@ storage
 /deploy/
 /config/hadeoffice
 .env
-
+/docs/.vuepress/.temp/
+/docs/.vuepress/.cache/
 # Editor directories and files
 .idea
 .vscode

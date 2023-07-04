@@ -21,5 +21,4 @@ func (api *UserApi) Logout(c *gin.Context) {
 	}
 	c.IRedirect("/#/login")
 	return
-
 }

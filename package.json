@@ -7,7 +7,9 @@
     "build": "vite build",
     "generate": "vite-ssg build",
     "preview": "vite preview",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "dependencies": {
     "element-plus": "^2.3.6",
@@ -23,7 +25,12 @@
     "unplugin-vue-components": "^0.25.1",
     "vite": "^4.3.9",
     "vite-ssg": "^0.22.2",
-    "vue-tsc": "^1.8.0"
+    "vue-tsc": "^1.8.0",
+    "vuepress": "^2.0.0-beta.63",
+    "vuepress-plugin-copy-code2": "^2.0.0-beta.228",
+    "vuepress-plugin-md-enhance": "^2.0.0-beta.228",
+    "@vuepress/plugin-search": "^2.0.0-beta.63",
+    "@vuepress/plugin-toc": "^2.0.0-beta.7"
   },
   "license": "MIT"
 }

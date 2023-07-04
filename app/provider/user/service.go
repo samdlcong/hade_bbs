@@ -171,7 +171,7 @@ func (u *UserService) Login(ctx context.Context, user *User) (*User, error) {
 
 func (u *UserService) Logout(ctx context.Context, user *User) error {
 	cacheService := u.container.MustMake(contract.CacheKey).(contract.CacheService)
-	userSession, err := u.VerifyRegister(ctx, user.Token)
+	userSession, err := u.VerifyLogin(ctx, user.Token)
 	// 不需要做任何操作
 	if err != nil || userSession.UserName != user.UserName {
 		return nil

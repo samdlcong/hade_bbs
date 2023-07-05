@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gohade/hade/framework"
 	"github.com/gohade/hade/framework/contract"
+	"github.com/gohade/hade/framework/provider/orm"
 	"github.com/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
 	"gopkg.in/gomail.v2"
@@ -39,7 +40,7 @@ func genToken(n int) string {
 func (u *UserService) Register(ctx context.Context, user *User) (*User, error) {
 	// 判断邮箱是否已经注册了
 	ormService := u.container.MustMake(contract.ORMKey).(contract.ORMService)
-	db, err := ormService.GetDB()
+	db, err := ormService.GetDB(orm.WithConfigPath("database.default"))
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +113,7 @@ func (u *UserService) VerifyRegister(ctx context.Context, token string) (bool, e
 
 	// 验证邮箱，用户名的唯一
 	ormService := u.container.MustMake(contract.ORMKey).(contract.ORMService)
-	db, err := ormService.GetDB()
+	db, err := ormService.GetDB(orm.WithConfigPath("database.default"))
 	if err != nil {
 		return false, err
 	}
@@ -139,7 +140,7 @@ func (u *UserService) VerifyRegister(ctx context.Context, token string) (bool, e
 
 func (u *UserService) Login(ctx context.Context, user *User) (*User, error) {
 	ormService := u.container.MustMake(contract.ORMKey).(contract.ORMService)
-	db, err := ormService.GetDB()
+	db, err := ormService.GetDB(orm.WithConfigPath("database.default"))
 	if err != nil {
 		return nil, err
 	}
@@ -196,7 +197,7 @@ func (u *UserService) VerifyLogin(ctx context.Context, token string) (*User, err
 
 func (u *UserService) GetUser(ctx context.Context, userID int64) (*User, error) {
 	ormService := u.container.MustMake(contract.ORMKey).(contract.ORMService)
-	db, err := ormService.GetDB()
+	db, err := ormService.GetDB(orm.WithConfigPath("database.default"))
 	if err != nil {
 		return nil, err
 	}

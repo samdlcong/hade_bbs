@@ -23,7 +23,7 @@ func Test_UsertRegisterLogin(t *testing.T) {
 	container.Bind(&cache.HadeCacheProvider{})
 
 	ormService := container.MustMake(contract.ORMKey).(contract.ORMService)
-	db, err := ormService.GetDB()
+	db, err := ormService.GetDB(orm.WithConfigPath("database.default"))
 	if err != nil {
 		t.Fatal(err)
 	}

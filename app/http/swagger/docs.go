@@ -31,6 +31,66 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/answer/create": {
+            "post": {
+                "description": "创建回答",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "qa"
+                ],
+                "summary": "创建回答",
+                "parameters": [
+                    {
+                        "description": "创建回答参数",
+                        "name": "answerCreateParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/qa.answerCreateParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/answer/delete": {
+            "get": {
+                "description": "创建回答",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "qa"
+                ],
+                "summary": "创建回答",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "删除id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/demo/demo": {
             "get": {
                 "description": "获取所有用户",
@@ -80,6 +140,229 @@ var doc = `{
                 }
             }
         },
+        "/question/create": {
+            "post": {
+                "description": "创建问题",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "qa"
+                ],
+                "summary": "创建问题",
+                "parameters": [
+                    {
+                        "description": "创建问题参数",
+                        "name": "questionCreateParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/qa.questionCreateParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/question/delete": {
+            "get": {
+                "description": "删除问题，同时删除问题中的所有答案",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "qa"
+                ],
+                "summary": "删除问题",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "删除id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/question/detail": {
+            "get": {
+                "description": "获取问题详情，包括问题的所有回答",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "qa"
+                ],
+                "summary": "获取问题详情",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "问题id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "问题详情，带回答和作者",
+                        "schema": {
+                            "type": "QuestionDTO"
+                        }
+                    }
+                }
+            }
+        },
+        "/question/edit": {
+            "post": {
+                "description": "编辑问题",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "qa"
+                ],
+                "summary": "编辑问题",
+                "parameters": [
+                    {
+                        "description": "编辑问题参数",
+                        "name": "questionEditParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/qa.questionEditParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/question/list": {
+            "get": {
+                "description": "获取问题列表，包含作者信息，不包含回答",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "qa"
+                ],
+                "summary": "获取问题列表",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "列表页页数",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "列表页单页个数",
+                        "name": "size",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "问题列表",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/qa.QuestionDTO"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "description": "用户登录接口",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "用户登录",
+                "parameters": [
+                    {
+                        "description": "login with param",
+                        "name": "loginParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user.loginParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "token",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/logout": {
+            "get": {
+                "description": "调用表示用户登出",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "用户登出",
+                "responses": {
+                    "200": {
+                        "description": "用户登出成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/user/register": {
             "post": {
                 "description": "用户注册接口",
@@ -106,7 +389,36 @@ var doc = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "自己成功",
+                        "description": "注册成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/register/verify": {
+            "get": {
+                "description": "使用token验证用户注册信息",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "验证注册信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "注册token",
+                        "name": "token",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "注册成功，请进入登录页面",
                         "schema": {
                             "type": "string"
                         }
@@ -123,6 +435,136 @@ var doc = `{
                     "type": "integer"
                 },
                 "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "qa.AnswerDTO": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "$ref": "#/definitions/user.UserDTO"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "update_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "qa.QuestionDTO": {
+            "type": "object",
+            "properties": {
+                "answer_num": {
+                    "type": "integer"
+                },
+                "answers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/qa.AnswerDTO"
+                    }
+                },
+                "author": {
+                    "$ref": "#/definitions/user.UserDTO"
+                },
+                "context": {
+                    "type": "string"
+                },
+                "creared_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "update_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "qa.answerCreateParam": {
+            "type": "object",
+            "required": [
+                "context",
+                "question_id"
+            ],
+            "properties": {
+                "context": {
+                    "type": "string"
+                },
+                "question_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "qa.questionCreateParam": {
+            "type": "object",
+            "required": [
+                "content",
+                "title"
+            ],
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "qa.questionEditParam": {
+            "type": "object",
+            "required": [
+                "content",
+                "id",
+                "title"
+            ],
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "user.UserDTO": {
+            "type": "object",
+            "properties": {
+                "create_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "user_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "user.loginParam": {
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "username": {
                     "type": "string"
                 }
             }

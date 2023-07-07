@@ -41,7 +41,7 @@ type Service interface {
 	// DeleteAnswer 删除某个回答
 	DeleteAnswer(ctx context.Context, answerID int64) error
 	// UpdateQuestion 代表更新问题
-	updateQuestion(ctx context.Context, question *Question) error
+	UpdateQuestion(ctx context.Context, question *Question) error
 }
 
 // Question
@@ -75,5 +75,5 @@ type Answer struct {
 type Pager struct {
 	Total int64 // 共有多少数据 只有返回值使用
 	Start int   // 起始位置
-	size  int   // 每个页面个数
+	Size  int   // 每个页面个数
 }

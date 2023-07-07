@@ -1,6 +1,10 @@
 package qa
 
-import "github.com/gohade/hade/framework/gin"
+import (
+	"github.com/gohade/hade/framework/gin"
+	"hade_bbs/app/http/middleware/auth"
+	provider "hade_bbs/app/provider/qa"
+)
 
 type questionCreateParam struct {
 	Title   string `json:"title" binding:"required"`
@@ -17,5 +21,29 @@ type questionCreateParam struct {
 // @Success 200 string Msg "操作成功"
 // @Router /question/create [post]
 func (api *QAApi) QuestionCreate(c *gin.Context) {
+	qaService := c.MustMake(provider.QaKey).(provider.Service)
 
+	param := &questionCreateParam{}
+	if err := c.ShouldBind(param); err != nil {
+		c.ISetStatus(400).IText(err.Error())
+		return
+	}
+
+	user := auth.GetAuthUser(c)
+	if user == nil {
+		c.ISetStatus(500).IText("无权限操作")
+		return
+	}
+
+	question := &provider.Question{
+		Title:    param.Title,
+		Context:  param.Content,
+		AuthorID: user.ID,
+	}
+	if err := qaService.PostQuestion(c, question); err != nil {
+		c.ISetStatus(500).IText(err.Error())
+		return
+	}
+
+	c.ISetOkStatus().IText("操作成功")
 }

@@ -32,9 +32,9 @@ type Service interface {
 	GetAnswer(ctx context.Context, answerID int64) (*Answer, error)
 
 	// AnswerLoadAuthor 回答加载Author字段
-	AnswerLoadAuthor(ctx context.Context, question *Answer) error
+	AnswerLoadAuthor(ctx context.Context, answer *Answer) error
 	// AnswersLoadAuthor 批量加载 Author字段
-	AnswersLoadAuthor(ctx context.Context, questions *[]*Answer) error
+	AnswersLoadAuthor(ctx context.Context, answers *[]*Answer) error
 
 	// DeleteQuestion 删除问题，同时删除对应的回答
 	DeleteQuestion(ctx context.Context, questionID int64) error

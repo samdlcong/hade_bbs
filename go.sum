@@ -430,6 +430,8 @@ github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99/go.mod h1:1lJo3i
 github.com/jessevdk/go-flags v1.5.0/go.mod h1:Fw0T6WPc1dYxT4mKEZRfG5kJhaTDP9pj1c2EWnYs/m4=
 github.com/jianfengye/collection v1.4.1 h1:ET63lV/OETFOscdULrKZfjHdEPDHhwGFk5jzv1tE6HA=
 github.com/jianfengye/collection v1.4.1/go.mod h1:Oi7o4E0BF3Z8K8ql/Aa/O10/4ooirgGw+8JLQe+O3lQ=
+github.com/jianfengye/collection v1.4.2 h1:8uzX8bM3OrQdfPYmg4eXvFNo1ZeeqdvNoKSvAksNJY4=
+github.com/jianfengye/collection v1.4.2/go.mod h1:Oi7o4E0BF3Z8K8ql/Aa/O10/4ooirgGw+8JLQe+O3lQ=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.2/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=

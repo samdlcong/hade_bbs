@@ -91,7 +91,7 @@ func Test_QA(t *testing.T) {
 
 			question1, err = qaService.GetQuestion(ctx, question1.ID)
 			So(err, ShouldBeNil)
-			So(question1.CreatedAt, ShouldBeNil)
+			So(question1.CreatedAt, ShouldNotBeNil)
 		}
 
 		{
@@ -149,7 +149,7 @@ func Test_QA(t *testing.T) {
 		{
 			err := qaService.QuestionLoadAnswers(ctx, question1)
 			So(err, ShouldBeNil)
-			So(question1.AnswerNum, ShouldBeNil, 1)
+			So(question1.AnswerNum, ShouldEqual, 1)
 			So(question1.Answers, ShouldNotBeNil)
 			So(len(question1.Answers), ShouldEqual, 1)
 		}
